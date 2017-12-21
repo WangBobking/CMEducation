@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">继续医学教育</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_zcdanxuan">ZcdanxuanActivity</string>
+    <string name="test">自学</string>
+    <string name="study">自测</string>
+    <string name="prompt">选择答案</string>
+    <string name="your">你的答案:</string>
+    <string name="right">正确答案:</string>
+    <string name="search">搜索(按汉语拼音首字母)</string>
+    <string name="sure">确定</string>
+    <string name="submit">交卷:</string>
+    <string name="A">A</string>
+    <string name="B">B</string>
+    <string name="C">C</string>
+    <string name="D">D</string>
+    <string name="apoint">A.对</string>
+    <string name="bpoint">B.错</string>
+    <string name="result">自测结果</string>
+    <string name="right_q">答对题数:</string>
+    <string name="wrong_q">答错题数:</string>
+    <string name="h7n9">H7N9</string>
+    <string name="title_activity_study">StudyActivity</string>
+
+</resources>
