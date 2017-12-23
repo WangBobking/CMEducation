@@ -1,7 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minHeight="30dp"
-    android:id="@+id/fileName" >
-</TextView>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">    
+    
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        style="@style/myHorizontal"
+        android:layout_width="wrap_content" >
+
+        <CheckBox 
+            android:id="@+id/aBtn"
+            style="@style/myCheckBox"/>
+        <TextView 
+            android:id="@+id/aSel"
+            style="@style/myTextView"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        style="@style/myHorizontal" >
+        <CheckBox 
+            android:id="@+id/bBtn"
+            style="@style/myCheckBox"/>
+        <TextView 
+            android:id="@+id/bSel"
+            style="@style/myTextView"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        style="@style/myHorizontal" >
+        <CheckBox 
+            android:id="@+id/cBtn"
+            style="@style/myCheckBox"/>
+        <TextView 
+            android:id="@+id/cSel"
+            style="@style/myTextView"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        style="@style/myHorizontal" >
+        <CheckBox 
+            android:id="@+id/dBtn"
+            style="@style/myCheckBox"/>
+        <TextView 
+            android:id="@+id/dSel"
+            style="@style/myTextView"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        style="@style/myHorizontal" >
+        <CheckBox 
+            android:id="@+id/eBtn"
+            style="@style/myCheckBox"
+            android:visibility="gone"/>
+        <TextView 
+            android:id="@+id/eSel"
+            style="@style/myTextView"
+            android:visibility="gone"/>
+    </LinearLayout>
+</LinearLayout>

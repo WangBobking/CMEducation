@@ -18,6 +18,7 @@ import cn.bmob.v3.datatype.BmobFile;
 import com.dfsebook.cmeducation.util.FloatingActionButton;
 import com.dfsebook.cmeducation.util.GetBmobFiles;
 import com.dfsebook.cmeducation.util.GetBmobFiles.BmobFileListener;
+import com.dfsebook.cmeducation.util.GetSubjects;
 
 public class MainActivity extends Activity implements BmobFileListener{
 
@@ -29,12 +30,14 @@ public class MainActivity extends Activity implements BmobFileListener{
 		GetBmobFiles gf = new GetBmobFiles();
 		gf.setBmobFileListener(this);
 		gf.getFiles();
+		
+		
 	}
 
 
 	@Override
 	public void onGetFile(List<BmobFile> bmobFiles) {
-		Intent intent = new Intent(this, StudyActivity.class);
+		Intent intent = new Intent(this, CourseActivity.class);
 		intent.putExtra("bmobFiles", (Serializable)bmobFiles);
 		startActivity(intent);
 	}

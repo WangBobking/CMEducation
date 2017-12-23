@@ -21,7 +21,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.DownloadFileListener;
 import cn.bmob.v3.listener.FindListener;
 
-import com.dfsebook.cmeducation.adapter.StudyAdapter;
+import com.dfsebook.cmeducation.adapter.CourseAdapter;
 import com.dfsebook.cmeducation.bean.Cme;
 
 public class BmobHelper {
@@ -44,7 +44,7 @@ public class BmobHelper {
 		                    bmobFiles.add(file);
 		               }		        	
 		            }
-		            StudyAdapter adapter = new StudyAdapter(context,bmobFiles);
+		            CourseAdapter adapter = new CourseAdapter(context,bmobFiles);
 		            listView.setAdapter(adapter);
 		        }else{
 		            toast(context, "查询失败："+e.getMessage());

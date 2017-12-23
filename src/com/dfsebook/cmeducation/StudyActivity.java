@@ -3,42 +3,44 @@ package com.dfsebook.cmeducation;
 import java.util.List;
 
 import com.dfsebook.cmeducation.adapter.StudyAdapter;
+import com.dfsebook.cmeducation.bean.Subject;
+import com.dfsebook.cmeducation.util.BmobHelper;
+import com.dfsebook.cmeducation.util.GetSubjects;
+import com.dfsebook.cmeducation.util.GetSubjects.SubjectListener;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import cn.bmob.v3.datatype.BmobFile;
 
-public class StudyActivity extends Activity implements OnItemClickListener{
+public class StudyActivity extends Activity implements SubjectListener{
 
 	private ListView listView;
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_study);
-		listView = (ListView)findViewById(R.id.study_show);
+		setContentView(R.layout.list_show);
 		Intent intent = getIntent();
-		List<BmobFile> bmobFiles = (List<BmobFile>)intent.getSerializableExtra("bmobFiles");
-		StudyAdapter adapter = new StudyAdapter(this, bmobFiles);
-		listView.setAdapter(adapter);
-		listView.setOnItemClickListener(this);
-		setTitles();
-	}
-
-	private void setTitles() {		
-			
+		BmobFile bmobFile = (BmobFile)intent.getSerializableExtra("bmobFile");
+		String name = bmobFile.getFilename();
+        name = name.substring(0, name.indexOf("."));
+        setTitle(name);
+		listView = (ListView)findViewById(R.id.showList);
+//		GetSubjects gs = new GetSubjects(this);
+//		gs.setSubjectListener(this);
+//		gs.get(bmobFile);
+		GetSubjects.loadFileToGetSubjects(this, bmobFile);
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		
+	public void onGetSubject(List<Subject> subjects) {
+//		if (subjects == null) {
+//			BmobHelper.toast(this, "null,nulllllllllll");
+//			return;
+//		}
+		StudyAdapter adapter = new StudyAdapter(this, subjects);
+		listView.setAdapter(adapter);
 	}
-
 }
