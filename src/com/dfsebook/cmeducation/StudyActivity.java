@@ -1,64 +1,43 @@
 package com.dfsebook.cmeducation;
 
-import com.dfsebook.cmeducation.util.BmobHelper;
+import java.util.List;
+
+import com.dfsebook.cmeducation.adapter.StudyAdapter;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Menu;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.TextView;
+import cn.bmob.v3.datatype.BmobFile;
 
-public class StudyActivity extends Activity implements TextWatcher{
+public class StudyActivity extends Activity implements OnItemClickListener{
 
 	private ListView listView;
 	
-	private EditText search;
-	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_study);
 		listView = (ListView)findViewById(R.id.study_show);
-		TextView hind = (TextView)findViewById(R.id.hind);
-		hind.requestFocus();
-		search = (EditText)findViewById(R.id.search);
-		search.addTextChangedListener(this);
+		Intent intent = getIntent();
+		List<BmobFile> bmobFiles = (List<BmobFile>)intent.getSerializableExtra("bmobFiles");
+		StudyAdapter adapter = new StudyAdapter(this, bmobFiles);
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(this);
 		setTitles();
-		
-		BmobHelper bh = new BmobHelper();
-		bh.getBmobFiles(this, listView);
 	}
 
 	private void setTitles() {		
 			
 	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.study, menu);
-		return true;
-	}
 
 	@Override
-	public void afterTextChanged(Editable arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-			int arg3) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-		// TODO Auto-generated method stub
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		
 	}
 

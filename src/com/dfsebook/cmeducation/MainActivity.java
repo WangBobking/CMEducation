@@ -1,5 +1,8 @@
 package com.dfsebook.cmeducation;
 
+import java.io.Serializable;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,41 +13,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.dfsebook.cmeducation.util.FloatingActionButton;
+import cn.bmob.v3.datatype.BmobFile;
 
-public class MainActivity extends Activity {
+import com.dfsebook.cmeducation.util.FloatingActionButton;
+import com.dfsebook.cmeducation.util.GetBmobFiles;
+import com.dfsebook.cmeducation.util.GetBmobFiles.BmobFileListener;
+
+public class MainActivity extends Activity implements BmobFileListener{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		FloatingActionButton rab = new  FloatingActionButton.Builder(this)
-        .withDrawable(getResources().getDrawable(R.drawable.play))
-        .withButtonColor(Color.CYAN)
-        .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
-        .withMargins(0, 0, 16, 16)
-        .create();
-		rab.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				openOptionsMenu();				
-			}
-		});
+
+		GetBmobFiles gf = new GetBmobFiles();
+		gf.setBmobFileListener(this);
+		gf.getFiles();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.cme_h7n9) {
-			Intent intent = new Intent(this,StudyActivity.class);
-			startActivity(intent);
-		}
-		return super.onOptionsItemSelected(item);
+	public void onGetFile(List<BmobFile> bmobFiles) {
+		Intent intent = new Intent(this, StudyActivity.class);
+		intent.putExtra("bmobFiles", (Serializable)bmobFiles);
+		startActivity(intent);
 	}
 }
