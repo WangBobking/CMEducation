@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import cn.bmob.v3.datatype.BmobFile;
 
@@ -20,7 +21,7 @@ public class CourseActivity extends Activity implements OnItemClickListener{
 
 	private ListView listView;
 	
-	private List<BmobFile> bmobFiles;
+	private List<String> fileNames;
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -29,8 +30,9 @@ public class CourseActivity extends Activity implements OnItemClickListener{
 		setContentView(R.layout.list_show);
 		listView = (ListView)findViewById(R.id.showList);
 		Intent intent = getIntent();
-		bmobFiles = (List<BmobFile>)intent.getSerializableExtra("bmobFiles");
-		CourseAdapter adapter = new CourseAdapter(this, bmobFiles);
+		fileNames = (List<String>)intent.getSerializableExtra("fileNames");
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+				this, android.R.layout.simple_list_item_1, fileNames);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(this);
 	}
@@ -38,7 +40,7 @@ public class CourseActivity extends Activity implements OnItemClickListener{
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Intent intent = new Intent(this, StudyActivity.class);
-		intent.putExtra("bmobFile", (Serializable)bmobFiles.get(position));
+		intent.putExtra("fileName", fileNames.get(position));
 		startActivity(intent);
 	}
 

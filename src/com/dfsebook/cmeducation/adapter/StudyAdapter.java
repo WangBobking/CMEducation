@@ -67,17 +67,26 @@ public class StudyAdapter extends BaseAdapter {
         holder.bBtn.setChecked(false);
         holder.cBtn.setChecked(false);
         holder.dBtn.setChecked(false);
+        holder.dBtn.setVisibility(View.GONE);
         holder.eBtn.setChecked(false);
-        if (subject.getOptions()[4] != null) {
+        holder.eBtn.setVisibility(View.GONE);
+        holder.dSel.setVisibility(View.GONE);
+        holder.eSel.setVisibility(View.GONE);
+        if (subject.getOptions().length > 3) {
+        	holder.dBtn.setVisibility(View.VISIBLE);
+        }
+        if (subject.getOptions().length > 4) {
         	holder.eBtn.setVisibility(View.VISIBLE);
         }
-//        holder = (ViewHolder)convertView.getTag(); 
         holder.text.setText(subject.getStem()); 
         holder.aSel.setText("A." + subject.getOptions()[0]);
         holder.bSel.setText("B." + subject.getOptions()[1]);
         holder.cSel.setText("C." + subject.getOptions()[2]);
-        holder.dSel.setText("D." + subject.getOptions()[3]);
-        if (subject.getOptions()[4] != null) {
+        if (subject.getOptions().length > 3) {
+        	holder.dSel.setVisibility(View.VISIBLE);
+        	holder.dSel.setText("D." + subject.getOptions()[3]);
+        }
+        if (subject.getOptions().length > 4) {
         	holder.eSel.setVisibility(View.VISIBLE);
         	holder.eSel.setText("E." + subject.getOptions()[4]);
         }
@@ -87,9 +96,11 @@ public class StudyAdapter extends BaseAdapter {
     		holder.bBtn.setChecked(true);
     	if (subject.getAnswers()[2] == 1)
     		holder.cBtn.setChecked(true);
-    	if (subject.getAnswers()[3] == 1)
+    	if (subject.getAnswers().length > 3 && 
+    			subject.getAnswers()[3] == 1)
     		holder.dBtn.setChecked(true);
-    	if (subject.getAnswers()[4] == 1)
+    	if (subject.getAnswers().length > 4 && 
+    			subject.getAnswers()[4] == 1)
     		holder.eBtn.setChecked(true);
         return convertView;  
 	}

@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toast;
 import cn.bmob.v3.datatype.BmobFile;
 
 public class StudyActivity extends Activity implements SubjectListener{
@@ -23,23 +24,16 @@ public class StudyActivity extends Activity implements SubjectListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_show);
 		Intent intent = getIntent();
-		BmobFile bmobFile = (BmobFile)intent.getSerializableExtra("bmobFile");
-		String name = bmobFile.getFilename();
-        name = name.substring(0, name.indexOf("."));
-        setTitle(name);
+		String fileName = intent.getStringExtra("fileName");
+        setTitle(fileName);
 		listView = (ListView)findViewById(R.id.showList);
-//		GetSubjects gs = new GetSubjects(this);
-//		gs.setSubjectListener(this);
-//		gs.get(bmobFile);
-		GetSubjects.loadFileToGetSubjects(this, bmobFile);
+		GetSubjects gs = new GetSubjects();
+		gs.setSubjectListener(this);
+		gs.readFileToGetSubjects(fileName);
 	}
 
 	@Override
 	public void onGetSubject(List<Subject> subjects) {
-//		if (subjects == null) {
-//			BmobHelper.toast(this, "null,nulllllllllll");
-//			return;
-//		}
 		StudyAdapter adapter = new StudyAdapter(this, subjects);
 		listView.setAdapter(adapter);
 	}
