@@ -1,7 +1,5 @@
 package com.dfsebook.cmeducation.bean;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Subject {
 

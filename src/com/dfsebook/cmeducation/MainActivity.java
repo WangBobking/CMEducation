@@ -93,7 +93,6 @@ public class MainActivity extends Activity implements DownLoadListener{
 			}
 			if (temp.isDirectory()) {
 				delAllFile(path + "/" + tempList[i]);
-//				delFolder(path + "/" + tempList[i]);
 				flag = true;
 			}
 		}
@@ -113,6 +112,7 @@ public class MainActivity extends Activity implements DownLoadListener{
 			Intent intent = new Intent(MainActivity.this, CourseActivity.class);
 			intent.putExtra("fileNames", (Serializable)names);
 			startActivity(intent);
+			finish();
 		}
 	}
 }
